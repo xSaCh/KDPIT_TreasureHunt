@@ -1,0 +1,13 @@
+2023-07-13 22:07:08,845 - routeMan - INFO - Routes: [['group1'], [], []]
+2023-07-13 22:07:08,854 - __main__ - INFO - Group: {'group1': 0} user_data: {'name': 'group1', 'selfie_pending': False}
+2023-07-13 22:08:07,073 - __main__ - INFO - Grp: group1 upload QR: qr_group1_0.jpg
+2023-07-13 22:08:32,262 - __main__ - INFO - Grp: group1 upload QR: qr_group1_1.jpg
+2023-07-13 22:08:53,764 - __main__ - INFO - Grp: group1 upload QR: qr_group1_2.jpg
+2023-07-13 22:11:24,000 - routeMan - INFO - Routes: [['grp1'], [], []]
+2023-07-13 22:11:24,014 - __main__ - INFO - Group: {'grp1': 0} user_data: {'name': 'grp1', 'selfie_pending': False}
+2023-07-13 22:11:53,897 - __main__ - INFO - Grp: grp1 upload QR: qr_grp1_0.jpg
+2023-07-13 22:12:05,565 - __main__ - INFO - Grp: grp1 upload Selfie: selfie_grp1_1.jpg
+2023-07-13 22:12:05,566 - __main__ - INFO - Group: {'grp1': 1} user_data: {'name': 'grp1', 'selfie_pending': False}
+2023-07-13 22:12:16,215 - __main__ - INFO - Grp: grp1 upload QR: qr_grp1_1.jpg
+2023-07-13 22:12:27,465 - __main__ - INFO - Grp: grp1 upload Selfie: selfie_grp1_2.jpg
+2023-07-13 22:12:27,470 - __main__ - INFO - Group: {'grp1': 2} user_data: {'name': 'grp1', 'selfie_pending': False}

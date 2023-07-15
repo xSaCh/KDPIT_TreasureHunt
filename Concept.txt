@@ -1,0 +1,24 @@
+/start
+[] Enter Group name
+Grp1
+[] [Send Riddle]
+
+[Send QR]
+(If VALID)
+    [Send selfie]
+    [] [Send Riddle]
+(else)
+    [] [Send invalid qr code or resend]
+
+
+/stats
+[] [Grp1 Stats , Grp2 Stats, Grp3 Stats]
+
+GRPS
+    G1:
+        Current Level
+        Cur Selfie Rem
+    
+
+
+6058419192:AAG9n9POKFYC7XPi15Tsr-I_LVFBBfr4M2g
