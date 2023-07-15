@@ -2,9 +2,9 @@ import logging
 import random as rand
 from riddle import *
 
-TOTAL_ROUTE = 3
 TOTAL_TEAM = 6
-routes = [[] for i in range(TOTAL_ROUTE)]
+TOTAL_RIDDLES = 6
+teams = ["" for i in range(TOTAL_TEAM)]
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -28,23 +28,24 @@ def getRouteRand(grpName):
 
 
 def getRoute(grpName):
-    if all(len(i) >= TOTAL_TEAM / TOTAL_ROUTE for i in routes):
-        logger.warning("Routes are full %s", routes)
+    global teams
+    if all(len(i) > 0 for i in teams):
+        logger.warning("Routes are full %s", teams)
         return
 
-    for r in routes:
-        if len(r) < TOTAL_TEAM / TOTAL_ROUTE:
-            r.append(grpName)
+    for r in range(len(teams)):
+        if len(teams[r]) == 0:
+            teams[r] = grpName
             break
-    logger.info("Routes: %s", routes)
+    logger.info("Routes: %s", teams)
 
 
-def getRiddle(grpName, level):
-    r, grp = -1, -1
-    for i in range(len(routes)):
-        if routes[i].count(grpName):
-            r = i
-            grp = routes[i].index(grpName)
+def getRiddle(teamName, level, code):
+    tInd = teams.index(teamName)
 
-    k = list(RIDDLES.keys())[r]
-    return RIDDLES[k][grp][level]
+    tn = codeToTeam(code)
+
+    if tn != str(f"{tInd+1}{level}"):
+        return -1
+
+    return RIDDLES[tInd][level]

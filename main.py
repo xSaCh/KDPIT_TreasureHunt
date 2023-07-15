@@ -1,7 +1,11 @@
 import logging
+import time
+import routeMan as rr
+from PIL import Image
+import cv2
 
 from telegram import __version__ as TG_VER
-
+from telegram import File
 from telegram import ForceReply, Update
 from telegram.ext import (
     Application,
@@ -11,7 +15,6 @@ from telegram.ext import (
     ConversationHandler,
     filters,
 )
-import routeMan as rr
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
@@ -34,7 +37,8 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 groups = {}
-MAX_LEVEL = 2
+
+detector = cv2.QRCodeDetector()
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -74,12 +78,26 @@ async def qr(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
     name = cxt.user_data["name"]
     user = update.message.from_user
     print(user)
-    photo_file = await update.message.photo[-1].get_file()
-    await photo_file.download_to_drive(f"qr_{name}_{groups[name]}.jpg")
-    logger.info("Grp: %s upload QR: %s", name, f"qr_{name}_{groups[name]}.jpg")
 
-    cxt.user_data["selfie_pending"] = True
-    await update.message.reply_text("Verfied send selfie")
+    photo_file = await update.message.photo[-1].get_file()
+
+    _fileName = f"qr_{name}_{groups[name]}_{time.strftime('%H_%M_%S')}.jpg"
+    await photo_file.download_to_drive(_fileName)
+    logger.info(
+        "Grp: %s upload QR: %s",
+        name,
+        _fileName,
+    )
+
+    data, _, _ = detector.detectAndDecode(cv2.imread(_fileName))
+    if data:
+        riddle = rr.getRiddle(name, groups[name], data)
+        if riddle != -1:
+            cxt.user_data["selfie_pending"] = True
+            cxt.user_data["Riddle"] = riddle
+            await update.message.reply_text("Verfied send selfie")
+            return
+    await update.message.reply_text("Invalid Qr Code or resend it clear")
 
 
 async def photo(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
@@ -87,18 +105,21 @@ async def photo(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
 
     name = cxt.user_data["name"]
     photo_file = await update.message.photo[-1].get_file()
-    await photo_file.download_to_drive(f"selfie_{name}_{groups[name]}.jpg")
+    _fileName = f"selfie_{name}_{groups[name]}_{time.strftime('%H_%M_%S')}.jpg"
+    await photo_file.download_to_drive(_fileName)
     groups[name] += 1
     cxt.user_data["selfie_pending"] = False
 
-    logger.info("Grp: %s upload Selfie: %s", name, f"selfie_{name}_{groups[name]}.jpg")
+    logger.info(
+        "Grp: %s upload Selfie: %s",
+        name,
+        _fileName,
+    )
     logger.info("Group: %s user_data: %s", groups, cxt.user_data)
-    if groups[name] >= MAX_LEVEL:
+    if groups[name] >= rr.TOTAL_RIDDLES:
         await update.message.reply_text("Done")
     else:
-        await update.message.reply_text(
-            "Next riddle" + rr.getRiddle(name, groups[name])
-        )
+        await update.message.reply_text("Next riddle" + cxt.user_data["Riddle"])
 
 
 def main() -> None:
