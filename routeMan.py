@@ -27,7 +27,7 @@ def getRouteRand(grpName):
     logger.info("Routes: %s", routes)
 
 
-def getRoute(grpName):
+def setRoute(grpName):
     global teams
     if all(len(i) > 0 for i in teams):
         logger.warning("Routes are full %s", teams)

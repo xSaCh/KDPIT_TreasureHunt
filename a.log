@@ -42,3 +42,77 @@
 2023-07-15 21:14:25,784 - __main__ - INFO - Grp: T1 upload QR: qr_T1_1_21_14_25.jpg
 2023-07-15 21:14:46,212 - __main__ - INFO - Grp: T1 upload Selfie: selfie_T1_1_21_14_45.jpg
 2023-07-15 21:14:46,212 - __main__ - INFO - Group: {'T1': 2} user_data: {'name': 'T1', 'selfie_pending': False, 'Riddle': 'r1g1rr2'}
+2023-07-16 23:11:02,315 - routeMan - INFO - Routes: ['team1', '', '', '', '', '']
+2023-07-16 23:11:02,325 - __main__ - INFO - Group: {'team1': 0} user_data: {'name': 'team1', 'selfie_pending': False}
+2023-07-16 23:30:47,659 - routeMan - INFO - Routes: ['team1', '', '', '', '', '']
+2023-07-16 23:30:47,668 - __main__ - INFO - Group: {'team1': 0}
+2023-07-16 23:30:47,668 - __main__ - INFO - Group: team1 user_data: {'name': 'team1', 'selfie_pending': False}
+2023-07-16 23:35:11,115 - __main__ - INFO - Grp: team1 upload QR: Imgs/qr_team1_0_23_35_10.jpg
+2023-07-16 23:37:05,933 - routeMan - INFO - Routes: ['tm1', '', '', '', '', '']
+2023-07-16 23:37:05,936 - __main__ - INFO - Group: {'tm1': 0}
+2023-07-16 23:37:05,938 - __main__ - INFO - Group: tm1 user_data: {'name': 'tm1', 'selfie_pending': False}
+2023-07-16 23:37:15,974 - __main__ - INFO - Grp: tm1 upload QR: Imgs/qr_tm1_0_23_37_14.jpg
+2023-07-16 23:37:40,064 - routeMan - INFO - Routes: ['rm1', '', '', '', '', '']
+2023-07-16 23:37:40,073 - __main__ - INFO - Group: {'rm1': 0}
+2023-07-16 23:37:40,074 - __main__ - INFO - Group: rm1 user_data: {'name': 'rm1', 'selfie_pending': False}
+2023-07-16 23:37:48,983 - __main__ - INFO - Grp: rm1 upload QR: Imgs/qr_rm1_0_23_37_47.jpg
+2023-07-17 00:26:04,870 - routeMan - INFO - Routes: ['aa1', '', '', '', '', '']
+2023-07-17 00:26:04,870 - __main__ - INFO - Group: {'aa1': 0}
+2023-07-17 00:26:04,883 - __main__ - INFO - Group: aa1 user_data: {'name': 'aa1', 'selfie_pending': False}
+2023-07-17 00:59:01,842 - __main__ - INFO - Grp: aa1 upload QR: Imgs/qr_aa1_0_00_59_01.jpg
+2023-07-17 00:59:52,735 - routeMan - INFO - Routes: ['Aa', '', '', '', '', '']
+2023-07-17 00:59:52,739 - __main__ - INFO - Group: {'Aa': 0}
+2023-07-17 00:59:52,741 - __main__ - INFO - Group: Aa user_data: {'name': 'Aa', 'selfie_pending': False}
+2023-07-17 00:59:58,565 - __main__ - INFO - Grp: Aa upload QR: Imgs/qr_Aa_0_00_59_57.jpg
+2023-07-17 01:00:46,843 - routeMan - INFO - Routes: ['Qq', '', '', '', '', '']
+2023-07-17 01:00:46,853 - __main__ - INFO - Group: {'Qq': 0}
+2023-07-17 01:00:46,860 - __main__ - INFO - Group: Qq user_data: {'name': 'Qq', 'selfie_pending': False}
+2023-07-17 01:00:54,167 - __main__ - INFO - Grp: Qq upload QR: Imgs/qr_Qq_0_01_00_53.jpg
+2023-07-17 01:01:21,005 - routeMan - INFO - Routes: ['A', '', '', '', '', '']
+2023-07-17 01:01:21,011 - __main__ - INFO - Group: {'A': 0}
+2023-07-17 01:01:21,019 - __main__ - INFO - Group: A user_data: {'name': 'A', 'selfie_pending': False}
+2023-07-17 01:01:30,353 - __main__ - INFO - Grp: A upload QR: Imgs/qr_A_0_01_01_29.jpg
+2023-07-17 01:07:04,464 - routeMan - INFO - Routes: ['Rfh', '', '', '', '', '']
+2023-07-17 01:07:04,514 - __main__ - INFO - Group: {'Rfh': 0}
+2023-07-17 01:07:04,515 - __main__ - INFO - Group: Rfh user_data: {'name': 'Rfh', 'selfie_pending': False}
+2023-07-17 01:07:11,638 - __main__ - INFO - Grp: Rfh upload QR: Imgs/qr_Rfh_0_01_07_10.jpg
+2023-07-17 01:07:38,674 - routeMan - INFO - Routes: ['Gh', '', '', '', '', '']
+2023-07-17 01:07:38,694 - __main__ - INFO - Group: {'Gh': 0}
+2023-07-17 01:07:38,735 - __main__ - INFO - Group: Gh user_data: {'name': 'Gh', 'selfie_pending': False}
+2023-07-17 01:07:48,589 - __main__ - INFO - Grp: Gh upload QR: Imgs/qr_Gh_0_01_07_47.jpg
+2023-07-17 11:24:31,215 - routeMan - INFO - Routes: ['Nsnsn', '', '', '', '', '']
+2023-07-17 11:24:31,215 - __main__ - INFO - Group: {'Nsnsn': 0}
+2023-07-17 11:24:31,223 - __main__ - INFO - Group: Nsnsn user_data: {'name': 'Nsnsn', 'selfie_pending': False}
+2023-07-17 11:24:35,740 - routeMan - INFO - Routes: ['Nsnsn', 'tm1', '', '', '', '']
+2023-07-17 11:24:35,744 - __main__ - INFO - Group: {'Nsnsn': 0, 'tm1': 0}
+2023-07-17 11:24:35,748 - __main__ - INFO - Group: tm1 user_data: {'name': 'tm1', 'selfie_pending': False}
+2023-07-17 11:25:12,199 - __main__ - INFO - Grp: Nsnsn upload QR: Imgs/qr_Nsnsn_0_11_25_10.jpg
+2023-07-17 11:25:26,952 - __main__ - INFO - Grp: Nsnsn upload Selfie: Imgs/selfie_Nsnsn_0_11_25_25.jpg
+2023-07-17 11:25:26,964 - __main__ - INFO - Group: {'Nsnsn': 1, 'tm1': 0}
+2023-07-17 11:25:26,964 - __main__ - INFO - Group: Nsnsn user_data: {'name': 'Nsnsn', 'selfie_pending': False, 'Riddle': 'T1R1'}
+2023-07-17 11:25:58,976 - __main__ - INFO - Grp: tm1 upload QR: Imgs/qr_tm1_0_11_25_58.jpg
+2023-07-17 11:26:04,692 - __main__ - INFO - Grp: tm1 upload Selfie: Imgs/selfie_tm1_0_11_26_04.jpg
+2023-07-17 11:26:04,700 - __main__ - INFO - Group: {'Nsnsn': 1, 'tm1': 1}
+2023-07-17 11:26:04,700 - __main__ - INFO - Group: tm1 user_data: {'name': 'tm1', 'selfie_pending': False, 'Riddle': 'T2R1'}
+2023-07-17 12:03:45,409 - routeMan - INFO - Routes: ['Team 3', '', '', '', '', '']
+2023-07-17 12:03:45,425 - __main__ - INFO - Group: {'Team 3': 0}
+2023-07-17 12:03:45,425 - __main__ - INFO - Group: Team 3 user_data: {'name': 'Team 3', 'selfie_pending': False}
+2023-07-17 12:04:00,765 - routeMan - INFO - Routes: ['Team 3', 'Jjsjs', '', '', '', '']
+2023-07-17 12:04:00,765 - __main__ - INFO - Group: {'Team 3': 0, 'Jjsjs': 0}
+2023-07-17 12:04:00,773 - __main__ - INFO - Group: Jjsjs user_data: {'name': 'Jjsjs', 'selfie_pending': False}
+2023-07-17 12:04:05,448 - routeMan - INFO - Routes: ['Team 3', 'Jjsjs', 'Team 5', '', '', '']
+2023-07-17 12:04:05,456 - __main__ - INFO - Group: {'Team 3': 0, 'Jjsjs': 0, 'Team 5': 0}
+2023-07-17 12:04:05,456 - __main__ - INFO - Group: Team 5 user_data: {'name': 'Team 5', 'selfie_pending': False}
+2023-07-17 12:04:20,626 - routeMan - INFO - Routes: ['Team 3', 'Jjsjs', 'Team 5', 'tem4', '', '']
+2023-07-17 12:04:20,634 - __main__ - INFO - Group: {'Team 3': 0, 'Jjsjs': 0, 'Team 5': 0, 'tem4': 0}
+2023-07-17 12:04:20,634 - __main__ - INFO - Group: tem4 user_data: {'name': 'tem4', 'selfie_pending': False}
+2023-07-17 12:04:56,463 - __main__ - INFO - Grp: Team 3 upload QR: Imgs/qr_Team 3_0_12_04_50.jpg
+2023-07-17 12:05:19,301 - __main__ - INFO - Grp: Team 5 upload QR: Imgs/qr_Team 5_0_12_05_18.jpg
+2023-07-17 12:05:21,790 - __main__ - INFO - Grp: Team 3 upload Selfie: Imgs/selfie_Team 3_0_12_05_20.jpg
+2023-07-17 12:05:21,808 - __main__ - INFO - Group: {'Team 3': 1, 'Jjsjs': 0, 'Team 5': 0, 'tem4': 0}
+2023-07-17 12:05:21,808 - __main__ - INFO - Group: Team 3 user_data: {'name': 'Team 3', 'selfie_pending': False, 'Riddle': 'T1R1'}
+2023-07-17 12:05:27,195 - __main__ - INFO - Grp: Jjsjs upload QR: Imgs/qr_Jjsjs_0_12_05_26.jpg
+2023-07-17 12:05:41,340 - __main__ - INFO - Grp: Jjsjs upload QR: Imgs/qr_Jjsjs_0_12_05_40.jpg
+2023-07-17 12:06:03,330 - __main__ - INFO - Grp: Jjsjs upload QR: Imgs/qr_Jjsjs_0_12_06_02.jpg
+2023-07-17 12:06:24,847 - __main__ - INFO - Grp: Jjsjs upload QR: Imgs/qr_Jjsjs_0_12_06_23.jpg
+2023-07-17 12:06:59,964 - __main__ - INFO - Grp: Jjsjs upload QR: Imgs/qr_Jjsjs_0_12_06_59.jpg

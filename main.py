@@ -1,11 +1,9 @@
 import logging
 import time
 import routeMan as rr
-from PIL import Image
+import recover
 import cv2
 
-from telegram import __version__ as TG_VER
-from telegram import File
 from telegram import ForceReply, Update
 from telegram.ext import (
     Application,
@@ -28,7 +26,7 @@ ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
 ch.setFormatter(formatter)
 
-logging.getLogger("httpx").setLevel(logging.WARNING)
+# logging.getLogger("httpx").setLevel(logging.WARNING)
 
 logging.getLogger("routeMan").addHandler(fh)
 logging.getLogger("routeMan").addHandler(ch)
@@ -62,11 +60,16 @@ async def grpName(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     name = update.message.text
     groups[name] = 0
 
-    rr.getRoute(name)
+    rr.setRoute(name)
 
     context.user_data["name"] = name
     context.user_data["selfie_pending"] = False
-    logger.info("Group: %s user_data: %s", groups, context.user_data)
+
+    recover.backup("groups", groups)
+    recover.backup(f"ctx_{name}", context.user_data)
+    logger.info("Group: %s", groups)
+    logger.info("Group: %s user_data: %s", name, context.user_data)
+
     await update.message.reply_text(f"Your Group name is {name}")
 
 
@@ -81,7 +84,7 @@ async def qr(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
 
     photo_file = await update.message.photo[-1].get_file()
 
-    _fileName = f"qr_{name}_{groups[name]}_{time.strftime('%H_%M_%S')}.jpg"
+    _fileName = f"Imgs/qr_{name}_{groups[name]}_{time.strftime('%H_%M_%S')}.jpg"
     await photo_file.download_to_drive(_fileName)
     logger.info(
         "Grp: %s upload QR: %s",
@@ -90,6 +93,7 @@ async def qr(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
     )
 
     data, _, _ = detector.detectAndDecode(cv2.imread(_fileName))
+    print("TD: ", data)
     if data:
         riddle = rr.getRiddle(name, groups[name], data)
         if riddle != -1:
@@ -105,7 +109,7 @@ async def photo(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
 
     name = cxt.user_data["name"]
     photo_file = await update.message.photo[-1].get_file()
-    _fileName = f"selfie_{name}_{groups[name]}_{time.strftime('%H_%M_%S')}.jpg"
+    _fileName = f"Imgs/selfie_{name}_{groups[name]}_{time.strftime('%H_%M_%S')}.jpg"
     await photo_file.download_to_drive(_fileName)
     groups[name] += 1
     cxt.user_data["selfie_pending"] = False
@@ -115,7 +119,11 @@ async def photo(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
         name,
         _fileName,
     )
-    logger.info("Group: %s user_data: %s", groups, cxt.user_data)
+    recover.backup("groups", groups)
+    recover.backup(f"ctx_{name}", cxt.user_data)
+    logger.info("Group: %s", groups)
+    logger.info("Group: %s user_data: %s", name, cxt.user_data)
+
     if groups[name] >= rr.TOTAL_RIDDLES:
         await update.message.reply_text("Done")
     else:
