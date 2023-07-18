@@ -2,7 +2,6 @@ import logging
 import time
 import routeMan as rr
 import recover
-import cv2
 
 from telegram import ForceReply, Update
 from telegram.ext import (
@@ -26,7 +25,7 @@ ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
 ch.setFormatter(formatter)
 
-# logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("httpx").setLevel(logging.WARNING)
 
 logging.getLogger("routeMan").addHandler(fh)
 logging.getLogger("routeMan").addHandler(ch)
@@ -36,11 +35,12 @@ logger.addHandler(ch)
 
 groups = {}
 
-detector = cv2.QRCodeDetector()
-
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_user
+    await update.message.reply_text(
+        "For any technical difficulties please contact any of this cooridinator:\nSamarth: +919426824765"
+    )
     await update.message.reply_text("Enter Your Group Name: ")
 
 
@@ -82,18 +82,14 @@ async def qr(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.message.from_user
     print(user)
 
-    photo_file = await update.message.photo[-1].get_file()
+    data = update.message.text
 
-    _fileName = f"Imgs/qr_{name}_{groups[name]}_{time.strftime('%H_%M_%S')}.jpg"
-    await photo_file.download_to_drive(_fileName)
     logger.info(
-        "Grp: %s upload QR: %s",
+        "Grp: %s add QR code: %s",
         name,
-        _fileName,
+        data,
     )
 
-    data, _, _ = detector.detectAndDecode(cv2.imread(_fileName))
-    print("TD: ", data)
     if data:
         riddle = rr.getRiddle(name, groups[name], data)
         if riddle != -1:
@@ -106,6 +102,10 @@ async def qr(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def photo(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
     global groups
+
+    if not (cxt.user_data and cxt.user_data["selfie_pending"]):
+        await update.message.reply_text("Upload code first")
+        return
 
     name = cxt.user_data["name"]
     photo_file = await update.message.photo[-1].get_file()
@@ -124,9 +124,10 @@ async def photo(update: Update, cxt: ContextTypes.DEFAULT_TYPE) -> None:
     logger.info("Group: %s", groups)
     logger.info("Group: %s user_data: %s", name, cxt.user_data)
 
-    if groups[name] >= rr.TOTAL_RIDDLES:
+    if groups[name] > rr.TOTAL_RIDDLES:
         await update.message.reply_text("Done")
     else:
+        await update.message.reply_photo(open("D:\\q.jpg", "rb"))
         await update.message.reply_text("Next riddle" + cxt.user_data["Riddle"])
 
 
@@ -140,15 +141,13 @@ def main() -> None:
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("stats", stats))
 
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, grpName))
     application.add_handler(
         MessageHandler(
-            filters.PHOTO,
-            lambda u, c: photo(u, c)
-            if c.user_data and c.user_data["selfie_pending"]
-            else qr(u, c),
+            filters.TEXT & ~filters.COMMAND,
+            lambda u, c: qr(u, c) if c.user_data else grpName(u, c),
         )
     )
+    application.add_handler(MessageHandler(filters.PHOTO, photo))
 
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
