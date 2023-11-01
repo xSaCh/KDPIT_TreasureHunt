@@ -3,7 +3,7 @@ import random as rand
 from riddle import *
 
 TOTAL_TEAM = 6
-TOTAL_RIDDLES = 6
+TOTAL_RIDDLES = 7
 teams = ["" for i in range(TOTAL_TEAM)]
 
 logging.basicConfig(
@@ -48,4 +48,5 @@ def getRiddle(teamName, level, code):
     if tn != str(f"{tInd+1}{level}"):
         return -1
 
-    return RIDDLES[tInd][level]
+    return tn
+    # return RIDDLES[tInd][level]
